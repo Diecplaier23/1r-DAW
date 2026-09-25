@@ -13,7 +13,7 @@ public class Ejercicio11 {
         if (num1 % 2== 0 && num2 %2 ==0){
             System.out.println("Los dos numeros son pares");
         }else {
-            System.out.println("Los numeos son impares");
+            System.out.println("Almenos un numeo es impar");
         }
     }
 }
