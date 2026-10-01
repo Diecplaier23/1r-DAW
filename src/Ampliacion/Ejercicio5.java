@@ -4,30 +4,40 @@ import java.util.Scanner;
 
 public class Ejercicio5 {
     public static void main(String[] args) {
-    int n_barras;
-    String codigo_de_barras;
+        int n_cifras, resultado = 0;
+        String codigo_de_barras = "";
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce el numero de barras del codigo de barras:");
-        codigo_de_barras = sc.next();
+        System.out.println("Introduce el numero de cifras del codigo de barras:");
+        codigo_de_barras = sc.nextLine();
+        n_cifras = codigo_de_barras.length();
 
-        n_barras = String.valueOf(codigo_de_barras).length();
+        int[] a = new int[n_cifras];
+        if (n_cifras == 8 || n_cifras == 13) {
 
-        if (n_barras == 13 || n_barras == 8){
-            System.out.println("El codigo de barras introducido es valido");
-            int[] a = new int[n_barras - 1];
+            for (int i = 0; i < n_cifras; i++) {
+                a[i] = Character.getNumericValue(codigo_de_barras.charAt(i));
 
-            for (int i = n_barras - 2, posicion = 1; i >= 0; i--, posicion++) {
-                int cifra = codigo_de_barras.charAt(i) - '0';
-                int multiplicador = posicion % 2 == 1 ? 3 : 1;
-                a[posicion - 1] = cifra * multiplicador;
-                System.out.println("Cifra " + cifra + " en posicion " + posicion
-                        + " (desde la derecha, sin contar el digito de control) x "
-                        + multiplicador + " = " + a[posicion - 1]);
             }
 
-        } else {
-            System.out.println("El codigo de barras introducido no es valido, debe tener 8 o 13 cifras");
-        }
 
+            if (n_cifras==8){
+                System.out.println("8");
+                resultado =a[6]*3+a[5]+a[4]*3+a[3]+a[2]*3+a[1]+a[0]*3;
+                resultado = resultado + a[7];
+                resultado = 10 - (resultado % 10);
+                System.out.println("El digito de control es: " + resultado);
+            } else {
+                System.out.println("13");
+                resultado =a[11]+a[10]*3+a[9]+a[8]*3+a[7]+a[6]*3+a[5]+a[4]*3+a[3]+a[2]*3+a[1]+a[0]*3;
+                resultado = resultado + a[12];
+                resultado = 10 - (resultado % 10);
+                System.out.println("El digito de control es: " + resultado);
+            }
+
+
+        } else {
+            System.out.println("El codigo de barras no es valido.");
+        }
     }
 }
