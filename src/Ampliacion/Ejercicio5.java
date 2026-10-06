@@ -14,25 +14,27 @@ public class Ejercicio5 {
 
         int[] a = new int[n_cifras];
         if (n_cifras == 8 || n_cifras == 13) {
-
+    //Saca los valores de cada cifra del codigo de barras y los mete en un array
             for (int i = 0; i < n_cifras; i++) {
                 a[i] = Character.getNumericValue(codigo_de_barras.charAt(i));
-
             }
-
-
+    //comprobar que tipo de codigo es y calcular el digito de control
             if (n_cifras==8){
-                System.out.println("8");
-                resultado =a[6]*3+a[5]+a[4]*3+a[3]+a[2]*3+a[1]+a[0]*3;
-                resultado = resultado + a[7];
-                resultado = 10 - (resultado % 10);
+                resultado =(a[6]*3)+a[5]+(a[4]*3)+a[3]+(a[2]*3)+a[1]+(a[0]*3);
+                int b1 = Integer.parseInt(String.valueOf(resultado).substring(1, 2));
+                resultado = 10 - b1;
                 System.out.println("El digito de control es: " + resultado);
+            } else { /*8414533043847*/
+                resultado =a[11]*3+a[10]+a[9]*3+a[8]+a[7]*3+a[6]+a[5]*3+a[4]+a[3]*3+a[2]+a[1]*3+a[0];
+                int b1 = Integer.parseInt(String.valueOf(resultado).substring(1, 2));
+                resultado = 10 - b1;
+                System.out.println("El digito de control es: " + resultado);
+            }
+    //comprobar si el digito de control es igual al ultimo numero del codigo de barras
+            if (resultado == a[n_cifras - 1]) {
+                System.out.println("El codigo de barras es valido.");
             } else {
-                System.out.println("13");
-                resultado =a[11]+a[10]*3+a[9]+a[8]*3+a[7]+a[6]*3+a[5]+a[4]*3+a[3]+a[2]*3+a[1]+a[0]*3;
-                resultado = resultado + a[12];
-                resultado = 10 - (resultado % 10);
-                System.out.println("El digito de control es: " + resultado);
+                System.out.println("El codigo de barras no es valido.");
             }
 
 
