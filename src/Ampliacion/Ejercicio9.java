@@ -3,7 +3,7 @@ package Ampliacion;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Ejerciio9 {
+public class Ejercicio9 {
     public static void main(String[] args) {
         int num;
         int a[] = new int[4];
