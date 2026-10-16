@@ -12,7 +12,7 @@ public class Ejercicio6 {
     }
     public static int cuantosEscudos(int soldados) {
         if (soldados < 0) {
-            throw new IllegalArgumentException("El numero de soldados no puede ser negativo.");
+            System.out.println("El numero de soldados no puede ser negativo.");
         }
         int restantes = soldados;
         int escudos = 0;
